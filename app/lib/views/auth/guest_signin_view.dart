@@ -24,16 +24,20 @@ class GuestSigninView extends StatelessWidget {
       cardContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomTextField(
+          CustomTextField(
             label: 'Email',
             hint: 'name@email.com',
             keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            controller: TextEditingController(),
           ),
           const SizedBox(height: 16),
-          const CustomTextField(
+          CustomTextField(
             label: 'Password',
             hint: '••••••••',
             isPassword: true,
+            textInputAction: TextInputAction.next,
+            controller: TextEditingController(),
           ),
           const SizedBox(height: 8),
           Align(

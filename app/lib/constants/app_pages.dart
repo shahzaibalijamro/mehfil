@@ -20,7 +20,7 @@ class AppPages {
     ),
     GetPage(
       name: AppEndpoints.hostSignup,
-      page: () => const HostSignupView(),
+      page: () => HostSignupView(),
       transition: Transition.rightToLeft,
     ),
     GetPage(

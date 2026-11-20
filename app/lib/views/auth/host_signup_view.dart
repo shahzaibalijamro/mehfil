@@ -8,7 +8,12 @@ import 'widgets/custom_button.dart';
 import 'widgets/custom_text_field.dart';
 
 class HostSignupView extends StatelessWidget {
-  const HostSignupView({super.key});
+  HostSignupView({super.key});
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -23,28 +28,36 @@ class HostSignupView extends StatelessWidget {
       cardContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CustomTextField(
+          CustomTextField(
             label: 'Full name',
             hint: 'Your full name',
             keyboardType: TextInputType.name,
+            textInputAction: TextInputAction.next,
+            controller: fullNameController,
           ),
           const SizedBox(height: 16),
-          const CustomTextField(
+          CustomTextField(
             label: 'Email',
             hint: 'name@email.com',
             keyboardType: TextInputType.emailAddress,
+            textInputAction: TextInputAction.next,
+            controller: emailController,
           ),
           const SizedBox(height: 16),
-          const CustomTextField(
+          CustomTextField(
             label: 'Password',
             hint: '••••••••',
             isPassword: true,
+            textInputAction: TextInputAction.next,
+            controller: passwordController,
           ),
           const SizedBox(height: 16),
-          const CustomTextField(
+          CustomTextField(
             label: 'Confirm password',
             hint: '••••••••',
             isPassword: true,
+            textInputAction: TextInputAction.done,
+            controller: confirmPasswordController,
           ),
           const SizedBox(height: 24),
           CustomButton(

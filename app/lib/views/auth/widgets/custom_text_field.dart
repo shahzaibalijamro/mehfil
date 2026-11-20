@@ -8,6 +8,7 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final TextInputType keyboardType;
   final TextEditingController? controller;
+  final TextInputAction? textInputAction;
 
   const CustomTextField({
     super.key,
@@ -16,6 +17,7 @@ class CustomTextField extends StatefulWidget {
     this.isPassword = false,
     this.keyboardType = TextInputType.text,
     this.controller,
+    this.textInputAction,
   });
 
   @override
@@ -24,6 +26,7 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   late bool _obscureText;
+  final focusNode = FocusNode();
 
   @override
   void initState() {
@@ -54,6 +57,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
         TextField(
           controller: widget.controller,
           obscureText: _obscureText,
+          textInputAction: widget.textInputAction,
+          focusNode: focusNode,
+          onTapOutside: (event) => focusNode.unfocus(),
           keyboardType: widget.keyboardType,
           style: GoogleFonts.poppins(
             color: theme.colorScheme.onSurface,
