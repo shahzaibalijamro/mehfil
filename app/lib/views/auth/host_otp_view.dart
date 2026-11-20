@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants/app_colors.dart';
 import '../../constants/app_endpoints.dart';
+import '../../theme/app_theme.dart';
 import 'widgets/auth_scaffold.dart';
 import 'widgets/custom_button.dart';
 import 'widgets/otp_input_row.dart';
@@ -12,11 +12,14 @@ class HostOtpView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final customColors = context.customColors;
+
     return AuthScaffold(
       badgeText: 'HOST PANEL',
       subtitle: 'Enter the 6-digit code we sent you.',
       title: 'Verify your login',
-      headerHeight: 235,
+      headerHeight: 150,
       cardContent: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -30,7 +33,7 @@ class HostOtpView extends StatelessWidget {
                 'Success',
                 'Verification complete! Returning to login...',
                 snackPosition: SnackPosition.BOTTOM,
-                backgroundColor: AppColors.primary,
+                backgroundColor: theme.colorScheme.primary,
                 colorText: Colors.white,
                 margin: const EdgeInsets.all(16),
                 duration: const Duration(seconds: 2),
@@ -47,7 +50,7 @@ class HostOtpView extends StatelessWidget {
               Text(
                 "Didn't get it? ",
                 style: GoogleFonts.poppins(
-                  color: AppColors.textMuted,
+                  color: customColors.textMuted,
                   fontSize: 13.5,
                   fontWeight: FontWeight.w500,
                 ),
@@ -58,7 +61,7 @@ class HostOtpView extends StatelessWidget {
                     'Code Resent',
                     'A new 6-digit verification code has been sent.',
                     snackPosition: SnackPosition.BOTTOM,
-                    backgroundColor: AppColors.primaryDark,
+                    backgroundColor: theme.colorScheme.secondary,
                     colorText: Colors.white,
                     margin: const EdgeInsets.all(16),
                   );
@@ -66,11 +69,11 @@ class HostOtpView extends StatelessWidget {
                 child: Text(
                   'Resend code',
                   style: GoogleFonts.poppins(
-                    color: AppColors.primary,
+                    color: theme.colorScheme.primary,
                     fontSize: 13.5,
                     fontWeight: FontWeight.w700,
                     decoration: TextDecoration.underline,
-                    decorationColor: AppColors.primary,
+                    decorationColor: theme.colorScheme.primary,
                   ),
                 ),
               ),
@@ -83,7 +86,7 @@ class HostOtpView extends StatelessWidget {
         child: Text(
           'Your account opens only after verification.',
           style: GoogleFonts.poppins(
-            color: AppColors.textMuted,
+            color: customColors.textMuted,
             fontSize: 13.5,
             fontWeight: FontWeight.w400,
           ),

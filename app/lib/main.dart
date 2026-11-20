@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'constants/app_colors.dart';
+import 'controllers/theme_controller.dart';
 import 'constants/app_pages.dart';
+import 'theme/app_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  Get.put(ThemeController());
   runApp(const MyApp());
 }
 
@@ -14,19 +15,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeController = Get.find<ThemeController>();
     return GetMaterialApp(
       title: 'Mehfil',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        scaffoldBackgroundColor: AppColors.scaffoldBackground,
-        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary,
-          primary: AppColors.primary,
-          surface: AppColors.scaffoldBackground,
-        ),
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: themeController.themeMode,
       initialRoute: AppPages.initial,
       getPages: AppPages.routes,
     );

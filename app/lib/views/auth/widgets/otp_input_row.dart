@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../constants/app_colors.dart';
 
 class OtpInputRow extends StatefulWidget {
   final int length;
@@ -75,6 +74,8 @@ class _OtpInputRowState extends State<OtpInputRow> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: List.generate(widget.length, (index) {
@@ -100,7 +101,7 @@ class _OtpInputRowState extends State<OtpInputRow> {
               style: GoogleFonts.poppins(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
-                color: AppColors.textDark,
+                color: theme.colorScheme.onSurface,
               ),
               inputFormatters: [
                 FilteringTextInputFormatter.digitsOnly,
@@ -108,19 +109,17 @@ class _OtpInputRowState extends State<OtpInputRow> {
               decoration: InputDecoration(
                 counterText: '',
                 contentPadding: EdgeInsets.zero,
-                filled: true,
-                fillColor: AppColors.inputFill,
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide: const BorderSide(
-                    color: AppColors.inputBorder,
+                  borderSide: BorderSide(
+                    color: theme.colorScheme.outline,
                     width: 1.2,
                   ),
                 ),
                 focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(14),
-                  borderSide: const BorderSide(
-                    color: AppColors.inputBorderFocused,
+                  borderSide: BorderSide(
+                    color: theme.colorScheme.primary,
                     width: 1.6,
                   ),
                 ),
