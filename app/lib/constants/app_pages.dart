@@ -4,6 +4,8 @@ import '../views/auth/host_login_view.dart';
 import '../views/auth/host_signup_view.dart';
 import '../views/auth/host_otp_view.dart';
 import '../views/auth/guest_signin_view.dart';
+import '../views/events/create_event_view.dart';
+import '../views/events/manage_event_view.dart';
 
 class AppPages {
   AppPages._();
@@ -30,6 +32,16 @@ class AppPages {
       name: AppEndpoints.guestSignin,
       page: () => const GuestSigninView(),
       transition: Transition.fadeIn,
+    ),
+    GetPage(
+      name: AppEndpoints.createEvent,
+      page: () => const CreateEventView(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppEndpoints.manageEvent,
+      page: () => const ManageEventView(),
+      transition: Transition.rightToLeft,
     ),
   ];
 }

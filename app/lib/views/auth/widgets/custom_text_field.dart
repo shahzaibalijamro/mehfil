@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../constants/app_colors.dart';
+import '../../../theme/app_theme.dart';
 
 class CustomTextField extends StatefulWidget {
   final String label;
@@ -33,6 +33,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final customColors = context.customColors;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,57 +43,32 @@ class _CustomTextFieldState extends State<CustomTextField> {
         Text(
           widget.label,
           style: GoogleFonts.poppins(
-            color: AppColors.textDark,
+            color: theme.colorScheme.onSurface,
             fontSize: 13.5,
             fontWeight: FontWeight.w600,
           ),
         ),
         const SizedBox(height: 7),
 
-        // Text Field Container
+        // Text Field Container (inherits InputDecorationTheme from ThemeData)
         TextField(
           controller: widget.controller,
           obscureText: _obscureText,
           keyboardType: widget.keyboardType,
           style: GoogleFonts.poppins(
-            color: AppColors.textDark,
+            color: theme.colorScheme.onSurface,
             fontSize: 14.5,
             fontWeight: FontWeight.w500,
           ),
           decoration: InputDecoration(
             hintText: widget.hint,
-            hintStyle: GoogleFonts.poppins(
-              color: AppColors.textPlaceholder,
-              fontSize: 14,
-              fontWeight: FontWeight.w400,
-            ),
-            filled: true,
-            fillColor: AppColors.inputFill,
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 14,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(
-                color: AppColors.inputBorder,
-                width: 1.2,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(
-                color: AppColors.inputBorderFocused,
-                width: 1.5,
-              ),
-            ),
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: Icon(
                       _obscureText
                           ? Icons.visibility_outlined
                           : Icons.visibility_off_outlined,
-                      color: AppColors.textPlaceholder,
+                      color: customColors.textPlaceholder,
                       size: 20,
                     ),
                     onPressed: () {

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import '../../../constants/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -18,29 +16,32 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final primaryColor = theme.colorScheme.primary;
+
     return SizedBox(
       width: double.infinity,
       height: height,
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: isOutlined ? Colors.transparent : AppColors.primary,
-          foregroundColor: isOutlined ? AppColors.primary : Colors.white,
-          elevation: isOutlined ? 0 : 0,
+          backgroundColor: isOutlined ? Colors.transparent : primaryColor,
+          foregroundColor: isOutlined ? primaryColor : Colors.white,
+          elevation: 0,
           shadowColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
             side: isOutlined
-                ? const BorderSide(color: AppColors.primary, width: 1.4)
+                ? BorderSide(color: primaryColor, width: 1.4)
                 : BorderSide.none,
           ),
         ),
         child: Text(
           text,
-          style: GoogleFonts.poppins(
+          style: theme.textTheme.labelLarge?.copyWith(
             fontSize: 16,
             fontWeight: FontWeight.w700,
-            color: isOutlined ? AppColors.primary : Colors.white,
+            color: isOutlined ? primaryColor : Colors.white,
           ),
         ),
       ),

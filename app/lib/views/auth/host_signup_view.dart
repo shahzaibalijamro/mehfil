@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants/app_colors.dart';
 import '../../constants/app_endpoints.dart';
+import '../../theme/app_theme.dart';
 import 'widgets/auth_scaffold.dart';
 import 'widgets/custom_button.dart';
 import 'widgets/custom_text_field.dart';
@@ -12,11 +12,14 @@ class HostSignupView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final customColors = context.customColors;
+
     return AuthScaffold(
       badgeText: 'HOST PANEL',
       subtitle: 'Plan and manage your events.',
       title: 'Create account',
-      headerHeight: 235,
+      headerHeight: 150,
       cardContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -58,7 +61,7 @@ class HostSignupView extends StatelessWidget {
           Text(
             'Already have an account? ',
             style: GoogleFonts.poppins(
-              color: AppColors.textMuted,
+              color: customColors.textMuted,
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
@@ -70,11 +73,11 @@ class HostSignupView extends StatelessWidget {
             child: Text(
               'Log in',
               style: GoogleFonts.poppins(
-                color: AppColors.primary,
+                color: theme.colorScheme.primary,
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
                 decoration: TextDecoration.underline,
-                decorationColor: AppColors.primary,
+                decorationColor: theme.colorScheme.primary,
               ),
             ),
           ),

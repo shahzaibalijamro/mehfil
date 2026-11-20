@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants/app_colors.dart';
 import '../../constants/app_endpoints.dart';
+import '../../theme/app_theme.dart';
 import 'widgets/auth_scaffold.dart';
 import 'widgets/custom_button.dart';
 import 'widgets/custom_text_field.dart';
@@ -13,11 +13,14 @@ class GuestSigninView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final customColors = context.customColors;
+
     return AuthScaffold(
       badgeText: 'GUEST PANEL',
       subtitle: 'Join and experience events.',
       title: 'Guest signin',
-      headerHeight: 235,
+      headerHeight: 150,
       cardContent: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -41,7 +44,7 @@ class GuestSigninView extends StatelessWidget {
                   'Password Reset',
                   'Password reset instructions sent to your email.',
                   snackPosition: SnackPosition.BOTTOM,
-                  backgroundColor: AppColors.primaryDark,
+                  backgroundColor: theme.colorScheme.secondary,
                   colorText: Colors.white,
                   margin: const EdgeInsets.all(16),
                 );
@@ -54,11 +57,11 @@ class GuestSigninView extends StatelessWidget {
               child: Text(
                 'Forgot password?',
                 style: GoogleFonts.poppins(
-                  color: AppColors.primary,
+                  color: theme.colorScheme.primary,
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
                   decoration: TextDecoration.underline,
-                  decorationColor: AppColors.primary,
+                  decorationColor: theme.colorScheme.primary,
                 ),
               ),
             ),
@@ -71,7 +74,7 @@ class GuestSigninView extends StatelessWidget {
                 'Guest Signed In',
                 'Welcome to Guest Panel!',
                 snackPosition: SnackPosition.BOTTOM,
-                backgroundColor: AppColors.primary,
+                backgroundColor: theme.colorScheme.primary,
                 colorText: Colors.white,
                 margin: const EdgeInsets.all(16),
               );
@@ -92,7 +95,7 @@ class GuestSigninView extends StatelessWidget {
           Text(
             "Don't have an account? ",
             style: GoogleFonts.poppins(
-              color: AppColors.textMuted,
+              color: customColors.textMuted,
               fontSize: 14,
               fontWeight: FontWeight.w500,
             ),
@@ -104,11 +107,11 @@ class GuestSigninView extends StatelessWidget {
             child: Text(
               'Sign up',
               style: GoogleFonts.poppins(
-                color: AppColors.primary,
+                color: theme.colorScheme.primary,
                 fontSize: 14,
                 fontWeight: FontWeight.w700,
                 decoration: TextDecoration.underline,
-                decorationColor: AppColors.primary,
+                decorationColor: theme.colorScheme.primary,
               ),
             ),
           ),
