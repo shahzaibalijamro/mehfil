@@ -21,6 +21,7 @@ class OtpInputRow extends StatefulWidget {
 class _OtpInputRowState extends State<OtpInputRow> {
   late List<TextEditingController> _controllers;
   late List<FocusNode> _focusNodes;
+  late List<FocusNode> _keyboardFocusNodes;
 
   @override
   void initState() {
@@ -33,6 +34,10 @@ class _OtpInputRowState extends State<OtpInputRow> {
       widget.length,
       (_) => FocusNode(),
     );
+    _keyboardFocusNodes = List.generate(
+      widget.length,
+      (_) => FocusNode(),
+    );
   }
 
   @override
@@ -42,6 +47,9 @@ class _OtpInputRowState extends State<OtpInputRow> {
     }
     for (final fn in _focusNodes) {
       fn.dispose();
+    }
+    for (final kfn in _keyboardFocusNodes) {
+      kfn.dispose();
     }
     super.dispose();
   }
@@ -83,7 +91,7 @@ class _OtpInputRowState extends State<OtpInputRow> {
           width: 44,
           height: 56,
           child: KeyboardListener(
-            focusNode: FocusNode(),
+            focusNode: _keyboardFocusNodes[index],
             onKeyEvent: (event) {
               if (event is KeyDownEvent &&
                   event.logicalKey == LogicalKeyboardKey.backspace &&

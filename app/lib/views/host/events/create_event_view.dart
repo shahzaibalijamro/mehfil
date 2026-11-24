@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../constants/app_endpoints.dart';
-import '../../theme/app_theme.dart';
-import '../auth/widgets/custom_button.dart';
-import 'widgets/event_header.dart';
+
+import '../../../constants/app_endpoints.dart';
+import '../../../theme/app_theme.dart';
+import '../../auth/widgets/custom_button.dart';
+import '../widgets/host_header.dart';
 import 'widgets/event_input_field.dart';
 import 'widgets/map_pin_card.dart';
 
@@ -61,9 +62,10 @@ class _CreateEventViewState extends State<CreateEventView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Top Curved Header
-            const EventHeader(
+            HostHeader(
               badgeText: 'HOST PANEL',
               title: 'Create new event',
+              showBackButton: true,
             ),
 
             // Form Content

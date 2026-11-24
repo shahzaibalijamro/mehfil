@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../../../controllers/theme_controller.dart';
 import '../../../theme/app_theme.dart';
 
@@ -12,7 +13,7 @@ class AuthScaffold extends StatelessWidget {
   final Widget? footerContent;
   final double headerHeight;
 
-  const AuthScaffold({
+  AuthScaffold({
     super.key,
     required this.badgeText,
     required this.subtitle,
@@ -22,11 +23,12 @@ class AuthScaffold extends StatelessWidget {
     this.headerHeight = 150,
   });
 
+  final themeController = Get.find<ThemeController>();
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final customColors = context.customColors;
-    final themeController = Get.find<ThemeController>();
     final mediaQuery = MediaQuery.of(context);
     final topPadding = mediaQuery.padding.top;
 
@@ -63,7 +65,9 @@ class AuthScaffold extends StatelessWidget {
                               height: 140,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: customColors.headerCircle.withValues(alpha: 0.7),
+                                color: customColors.headerCircle.withValues(
+                                  alpha: 0.7,
+                                ),
                               ),
                             ),
                           ),

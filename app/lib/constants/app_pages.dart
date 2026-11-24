@@ -1,11 +1,13 @@
+import 'package:app/views/main_screen.dart';
 import 'package:get/get.dart';
+
 import 'app_endpoints.dart';
 import '../views/auth/host_login_view.dart';
 import '../views/auth/host_signup_view.dart';
 import '../views/auth/host_otp_view.dart';
 import '../views/auth/guest_signin_view.dart';
-import '../views/events/create_event_view.dart';
-import '../views/events/manage_event_view.dart';
+import '../views/host/events/create_event_view.dart';
+import '../views/host/events/manage_event_view.dart';
 
 class AppPages {
   AppPages._();
@@ -43,5 +45,6 @@ class AppPages {
       page: () => const ManageEventView(),
       transition: Transition.rightToLeft,
     ),
+    GetPage(name: AppEndpoints.mainScreen, page: () => MainScreen()),
   ];
 }

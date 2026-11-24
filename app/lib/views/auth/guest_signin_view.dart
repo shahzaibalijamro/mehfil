@@ -1,6 +1,8 @@
+import 'package:app/constants/user_roles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../../constants/app_endpoints.dart';
 import '../../theme/app_theme.dart';
 import 'widgets/auth_scaffold.dart';
@@ -8,8 +10,23 @@ import 'widgets/custom_button.dart';
 import 'widgets/custom_text_field.dart';
 import 'widgets/role_switch_button.dart';
 
-class GuestSigninView extends StatelessWidget {
+class GuestSigninView extends StatefulWidget {
   const GuestSigninView({super.key});
+
+  @override
+  State<GuestSigninView> createState() => _GuestSigninViewState();
+}
+
+class _GuestSigninViewState extends State<GuestSigninView> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +46,7 @@ class GuestSigninView extends StatelessWidget {
             hint: 'name@email.com',
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            controller: TextEditingController(),
+            controller: _emailController,
           ),
           const SizedBox(height: 16),
           CustomTextField(
@@ -37,7 +54,7 @@ class GuestSigninView extends StatelessWidget {
             hint: '••••••••',
             isPassword: true,
             textInputAction: TextInputAction.next,
-            controller: TextEditingController(),
+            controller: _passwordController,
           ),
           const SizedBox(height: 8),
           Align(
@@ -82,6 +99,12 @@ class GuestSigninView extends StatelessWidget {
                 colorText: Colors.white,
                 margin: const EdgeInsets.all(16),
               );
+              Future.delayed(const Duration(milliseconds: 600), () {
+                Get.offAllNamed(
+                  AppEndpoints.mainScreen,
+                  arguments: UserRole.guest,
+                );
+              });
             },
           ),
           const SizedBox(height: 16),

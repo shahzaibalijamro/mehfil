@@ -7,5 +7,5 @@ class AppEndpoints {
   static const String guestSignin = '/guest-signin';
   static const String createEvent = '/create-event';
   static const String manageEvent = '/manage-event';
+  static const String mainScreen = '/main';
 }
-

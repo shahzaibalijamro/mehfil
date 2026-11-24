@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../theme/app_theme.dart';
-import '../auth/widgets/custom_button.dart';
+
+import '../../auth/widgets/custom_button.dart';
+import '../widgets/host_header.dart';
 import 'widgets/countdown_timer_row.dart';
-import 'widgets/event_header.dart';
 import 'widgets/event_input_field.dart';
 import 'widgets/event_segmented_tabs.dart';
 import 'widgets/timeline_card.dart';
@@ -46,11 +46,12 @@ class _ManageEventViewState extends State<ManageEventView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Top Curved Header with Countdown Timer
-            const EventHeader(
+            HostHeader(
               badgeText: 'HOST PANEL',
               subtitle: '[Event name]',
               title: 'Manage event',
-              extraContent: CountdownTimerRow(
+              showBackButton: true,
+              extraContent: const CountdownTimerRow(
                 days: '24',
                 hours: '06',
                 minutes: '41',

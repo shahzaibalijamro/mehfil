@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import 'controllers/theme_controller.dart';
 import 'constants/app_pages.dart';
 import 'theme/app_theme.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
   Get.put(ThemeController());
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  MyApp({super.key});
+  final themeController = Get.find<ThemeController>();
   @override
   Widget build(BuildContext context) {
-    final themeController = Get.find<ThemeController>();
     return GetMaterialApp(
       title: 'Mehfil',
       debugShowCheckedModeBanner: false,

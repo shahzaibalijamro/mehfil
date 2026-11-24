@@ -1,38 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../../../controllers/theme_controller.dart';
 import '../../../theme/app_theme.dart';
 
-class EventHeader extends StatelessWidget {
+class HostHeader extends StatelessWidget {
   final String badgeText;
   final String? subtitle;
   final String title;
+  final Widget? action;
   final Widget? extraContent;
   final bool showBackButton;
-  final double? height;
 
-  const EventHeader({
+  HostHeader({
     super.key,
     this.badgeText = 'HOST PANEL',
     this.subtitle,
     required this.title,
+    this.action,
     this.extraContent,
-    this.showBackButton = true,
-    this.height,
+    this.showBackButton = false,
   });
+
+  final ThemeController themeController = Get.find<ThemeController>();
 
   @override
   Widget build(BuildContext context) {
     final customColors = context.customColors;
-    final themeController = Get.find<ThemeController>();
     final topPadding = MediaQuery.of(context).padding.top;
     final canPop = showBackButton && Navigator.canPop(context);
-
-    // Standard header height is 150 (+ topPadding for safe area), or 240 when extraContent (countdown timer) is present
-    final effectiveHeight =
-        (height ?? (extraContent != null ? 240.0 : 150.0)) + topPadding;
-    const double shapeSize = 140.0;
 
     return ClipRRect(
       borderRadius: const BorderRadius.only(
@@ -41,19 +38,18 @@ class EventHeader extends StatelessWidget {
       ),
       child: Container(
         width: double.infinity,
-        height: effectiveHeight,
         color: customColors.headerBackground,
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            // 1. Decorative circular accent shape in top-right (rendered BEHIND content and toggle)
+            // Top-right decorative circular accent
             Positioned(
               top: -24,
               right: -32,
               child: IgnorePointer(
                 child: Container(
-                  width: shapeSize,
-                  height: shapeSize,
+                  width: 150,
+                  height: 150,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: customColors.headerCircle.withValues(alpha: 0.7),
@@ -62,19 +58,19 @@ class EventHeader extends StatelessWidget {
               ),
             ),
 
-            // 2. Foreground Header Content (Theme Toggle, Badge, Title, extraContent) - rendered ABOVE the shape
+            // Header Content
             Padding(
               padding: EdgeInsets.fromLTRB(
                 22,
                 topPadding + 14,
                 22,
-                extraContent != null ? 18 : 20,
+                extraContent != null ? 18 : 24,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Top row: Back button (if available) + Badge + Theme Toggle
+                  // Top Row: Back Button (optional) + Badge + Theme Toggle
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -115,7 +111,6 @@ class EventHeader extends StatelessWidget {
                           ),
                         ],
                       ),
-                      // Theme Toggle Action Button (placed in front of the decorative shape)
                       Obx(
                         () => IconButton(
                           padding: EdgeInsets.zero,
@@ -135,9 +130,9 @@ class EventHeader extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: extraContent != null ? 12 : 14),
+                  const SizedBox(height: 14),
 
-                  // Optional Subtitle (e.g. "[Event name]")
+                  // Optional Subtitle (e.g. "Welcome back")
                   if (subtitle != null && subtitle!.isNotEmpty) ...[
                     Text(
                       subtitle!,
@@ -150,18 +145,32 @@ class EventHeader extends StatelessWidget {
                     const SizedBox(height: 2),
                   ],
 
-                  // Title (e.g. "Create new event" or "Manage event")
-                  Text(
-                    title,
-                    style: GoogleFonts.poppins(
-                      color: Colors.white,
-                      fontSize: 26,
-                      fontWeight: FontWeight.w800,
-                      height: 1.15,
-                    ),
+                  // Title and Optional Action Button (e.g. "Invite guest")
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          title,
+                          style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 26,
+                            fontWeight: FontWeight.w800,
+                            height: 1.15,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      if (action != null) ...[
+                        const SizedBox(width: 12),
+                        action!,
+                      ],
+                    ],
                   ),
 
-                  // Extra content (e.g. Countdown timer)
+                  // Optional Extra Content (e.g. countdown timer, filter chips)
                   if (extraContent != null) ...[
                     const SizedBox(height: 14),
                     extraContent!,

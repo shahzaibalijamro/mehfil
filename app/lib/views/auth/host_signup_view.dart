@@ -1,19 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import '../../constants/app_endpoints.dart';
 import '../../theme/app_theme.dart';
 import 'widgets/auth_scaffold.dart';
 import 'widgets/custom_button.dart';
 import 'widgets/custom_text_field.dart';
 
-class HostSignupView extends StatelessWidget {
-  HostSignupView({super.key});
-  final TextEditingController fullNameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
+class HostSignupView extends StatefulWidget {
+  const HostSignupView({super.key});
+
+  @override
+  State<HostSignupView> createState() => _HostSignupViewState();
+}
+
+class _HostSignupViewState extends State<HostSignupView> {
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
       TextEditingController();
+
+  @override
+  void dispose() {
+    _fullNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +49,7 @@ class HostSignupView extends StatelessWidget {
             hint: 'Your full name',
             keyboardType: TextInputType.name,
             textInputAction: TextInputAction.next,
-            controller: fullNameController,
+            controller: _fullNameController,
           ),
           const SizedBox(height: 16),
           CustomTextField(
@@ -41,7 +57,7 @@ class HostSignupView extends StatelessWidget {
             hint: 'name@email.com',
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
-            controller: emailController,
+            controller: _emailController,
           ),
           const SizedBox(height: 16),
           CustomTextField(
@@ -49,7 +65,7 @@ class HostSignupView extends StatelessWidget {
             hint: '••••••••',
             isPassword: true,
             textInputAction: TextInputAction.next,
-            controller: passwordController,
+            controller: _passwordController,
           ),
           const SizedBox(height: 16),
           CustomTextField(
@@ -57,7 +73,7 @@ class HostSignupView extends StatelessWidget {
             hint: '••••••••',
             isPassword: true,
             textInputAction: TextInputAction.done,
-            controller: confirmPasswordController,
+            controller: _confirmPasswordController,
           ),
           const SizedBox(height: 24),
           CustomButton(
