@@ -5,6 +5,11 @@ class GuestSettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('HostSettingsScreen'));
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        children: [Center(child: CircleAvatar(child: Text("Guset")))],
+      ),
+    );
   }
 }

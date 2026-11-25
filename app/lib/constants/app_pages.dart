@@ -8,18 +8,26 @@ import '../views/auth/host_otp_view.dart';
 import '../views/auth/guest_signin_view.dart';
 import '../views/host/events/create_event_view.dart';
 import '../views/host/events/manage_event_view.dart';
+import '../views/guest/events/guest_event_detail_view.dart';
 import '../views/host/invitation/invitation_preview_view.dart';
 import '../views/host/invitation/invitation_editor_view.dart';
 import '../views/host/invitation/invitation_edit_text_view.dart';
 import '../views/host/invitation/invitation_style_view.dart';
 import '../views/host/invitation/invitation_send_view.dart';
+import '../splash_screen.dart';
 
 class AppPages {
   AppPages._();
 
-  static const String initial = AppEndpoints.hostLogin;
+  static const String initial = AppEndpoints.splashScreen;
+  // static const String afterSplash = AppEndpoints.hostLogin;
 
   static final List<GetPage> routes = [
+    GetPage(
+      name: AppEndpoints.splashScreen,
+      page: () => const SplashScreen(),
+      transition: Transition.fadeIn,
+    ),
     GetPage(
       name: AppEndpoints.hostLogin,
       page: () => const HostLoginView(),
@@ -48,6 +56,11 @@ class AppPages {
     GetPage(
       name: AppEndpoints.manageEvent,
       page: () => const ManageEventView(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppEndpoints.guestEventDetail,
+      page: () => const GuestEventDetailView(),
       transition: Transition.rightToLeft,
     ),
     GetPage(name: AppEndpoints.mainScreen, page: () => MainScreen()),
