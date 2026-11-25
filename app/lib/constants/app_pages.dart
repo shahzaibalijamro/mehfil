@@ -8,6 +8,11 @@ import '../views/auth/host_otp_view.dart';
 import '../views/auth/guest_signin_view.dart';
 import '../views/host/events/create_event_view.dart';
 import '../views/host/events/manage_event_view.dart';
+import '../views/host/invitation/invitation_preview_view.dart';
+import '../views/host/invitation/invitation_editor_view.dart';
+import '../views/host/invitation/invitation_edit_text_view.dart';
+import '../views/host/invitation/invitation_style_view.dart';
+import '../views/host/invitation/invitation_send_view.dart';
 
 class AppPages {
   AppPages._();
@@ -46,5 +51,31 @@ class AppPages {
       transition: Transition.rightToLeft,
     ),
     GetPage(name: AppEndpoints.mainScreen, page: () => MainScreen()),
+
+    GetPage(
+      name: AppEndpoints.invitationPreview,
+      page: () => const InvitationPreviewView(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppEndpoints.invitationEditor,
+      page: () => const InvitationEditorView(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppEndpoints.invitationEditText,
+      page: () => const InvitationEditTextView(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppEndpoints.invitationStyle,
+      page: () => const InvitationStyleView(),
+      transition: Transition.rightToLeft,
+    ),
+    GetPage(
+      name: AppEndpoints.invitationSend,
+      page: () => const InvitationSendView(),
+      transition: Transition.rightToLeft,
+    ),
   ];
 }

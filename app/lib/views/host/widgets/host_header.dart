@@ -132,7 +132,6 @@ class HostHeader extends StatelessWidget {
                   ),
                   const SizedBox(height: 14),
 
-                  // Optional Subtitle (e.g. "Welcome back")
                   if (subtitle != null && subtitle!.isNotEmpty) ...[
                     Text(
                       subtitle!,
