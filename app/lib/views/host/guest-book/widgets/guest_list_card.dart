@@ -16,15 +16,31 @@ enum GuestStatus {
 }
 
 class GuestItem {
+  final String id;
   final String name;
   final int partySize;
   final GuestStatus status;
 
   const GuestItem({
+    this.id = '',
     required this.name,
     required this.partySize,
     required this.status,
   });
+
+  GuestItem copyWith({
+    String? id,
+    String? name,
+    int? partySize,
+    GuestStatus? status,
+  }) {
+    return GuestItem(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      partySize: partySize ?? this.partySize,
+      status: status ?? this.status,
+    );
+  }
 }
 
 class GuestListCard extends StatelessWidget {
