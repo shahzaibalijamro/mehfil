@@ -136,24 +136,30 @@ class HostGuestBookScreen extends StatelessWidget {
                 : null,
           ),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                icon,
-                size: 16,
-                color: isSelected
-                    ? customColors.headerBackground
-                    : Colors.white.withValues(alpha: 0.8),
-              ),
-              const SizedBox(width: 8),
-              Text(
-                title,
-                style: GoogleFonts.poppins(
+              Expanded(
+                child: Icon(
+                  icon,
+                  size: 16,
                   color: isSelected
                       ? customColors.headerBackground
-                      : Colors.white.withValues(alpha: 0.85),
-                  fontSize: 13,
-                  fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                      : Colors.white.withValues(alpha: 0.8),
+                ),
+              ),
+              const SizedBox(width: 8),
+              Expanded(
+                flex: 3,
+                child: Text(
+                  title,
+                  style: GoogleFonts.poppins(
+                    color: isSelected
+                        ? customColors.headerBackground
+                        : Colors.white.withValues(alpha: 0.85),
+                    fontSize: 13,
+                    fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                  ),
                 ),
               ),
             ],
@@ -246,8 +252,9 @@ class HostGuestBookScreen extends StatelessWidget {
                               ? theme.colorScheme.primary
                               : customColors.textMuted,
                           fontSize: 12.5,
-                          fontWeight:
-                              isSelected ? FontWeight.w700 : FontWeight.w500,
+                          fontWeight: isSelected
+                              ? FontWeight.w700
+                              : FontWeight.w500,
                         ),
                       ),
                     ),
@@ -260,36 +267,34 @@ class HostGuestBookScreen extends StatelessWidget {
         const SizedBox(height: 18),
 
         // 3. Guest List
-        Obx(
-          () {
-            final list = controller.filteredGuests;
-            if (list.isEmpty) {
-              return Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 40),
-                  child: Text(
-                    'No guests in this category',
-                    style: GoogleFonts.poppins(
-                      color: customColors.textMuted,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
+        Obx(() {
+          final list = controller.filteredGuests;
+          if (list.isEmpty) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 40),
+                child: Text(
+                  'No guests in this category',
+                  style: GoogleFonts.poppins(
+                    color: customColors.textMuted,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
                   ),
                 ),
-              );
-            }
-            return ListView.separated(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              padding: EdgeInsets.zero,
-              itemCount: list.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 14),
-              itemBuilder: (context, index) {
-                return GuestListCard(guest: list[index]);
-              },
+              ),
             );
-          },
-        ),
+          }
+          return ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            itemCount: list.length,
+            separatorBuilder: (_, __) => const SizedBox(height: 14),
+            itemBuilder: (context, index) {
+              return GuestListCard(guest: list[index]);
+            },
+          );
+        }),
         const SizedBox(height: 24),
       ],
     );
@@ -326,9 +331,7 @@ class HostGuestBookScreen extends StatelessWidget {
                     }
                   },
                   icon: Icon(
-                    isGuestList
-                        ? Icons.person_add_rounded
-                        : Icons.add_rounded,
+                    isGuestList ? Icons.person_add_rounded : Icons.add_rounded,
                     size: 16,
                     color: const Color(0xFF281703),
                   ),

@@ -91,7 +91,7 @@ class MainController extends GetxController {
       ),
     ),
     NavigationTab(
-      screen: GuestSettingsScreen(),
+      screen: GuestSettingsPage(),
       barItem: BottomNavigationBarItem(
         icon: Icon(PhosphorIconsBold.wrench),
         label: 'Settings',
